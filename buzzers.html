@@ -1,0 +1,102 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8"></meta>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<style type="text/css">
+	#inputs {
+		display: none;
+	}
+	
+	body.editing #inputs {
+		display: block;
+	}
+	
+	body.editing #edit-list {
+		display: none;
+	}
+	
+	body.buzzed {
+		background-color: #211eab;
+		color: white;
+		font-family: Optima;
+	}
+	
+	body.buzzed #edit-list {
+		display: none;
+	}
+	
+	#buzzed {
+		display: none;
+		margin:0 auto;
+		font-size: 90px;
+		margin-top: 200px;
+		width: 300px;
+	}
+
+	input {
+		display: block;
+		padding: 5px;
+		font-family: Georgia;
+		font-size: 14px;
+	}
+</style>
+<body onkeydown="buzz(event)">
+	<a href="#" id="edit-list">Change players</a>
+	<div id="inputs">
+		<input type="text" class="player" id="key-65"/>
+		<input type="text" class="player" id="key-66"/>
+		<input type="text" class="player" id="key-67"/>
+		<input type="text" class="player" id="key-68"/>
+		<input type="text" class="player" id="key-69"/>
+		<input type="text" class="player" id="key-70"/>
+		<input type="text" class="player" id="key-71"/>
+		<input type="text" class="player" id="key-72"/>
+		<input type="submit" id="edit-done" value="Done"/>
+	</div>
+	
+	<div id="buzzed"><span>James!</span></div>
+</body>
+
+<embed src="http://www.mediacollege.com/downloads/sound-effects/beep/beep-09.wav" autostart="false"
+width="0" height="0" id="sound1" enablejavascript="true">
+
+<script type="text/javascript">
+	var buzz = function(e) {
+		if ($(e.srcElement).hasClass("player")) return
+		var key = e.which || e.keyCode;
+		
+		if ($("body").hasClass("editing")) {
+			$("input#key-" + key).fadeIn(100).fadeOut(100).fadeIn(100);
+		} else {
+			if ($("body").hasClass("buzzed")) {
+				if (key == 32) {
+					$("body").removeClass("buzzed");
+					$("#buzzed span").text("");
+				}
+			} else {
+				if (key == 32) return;
+				if (key >= 65 && key <= 72) {
+					var sound = document.getElementById("sound1");
+					sound.Play();
+					var playerName = $("input#key-" + key).val();
+					if ($.trim(playerName) == "") playerName = "??";
+					$("#buzzed span").text(playerName + "!");
+					$("body").addClass("buzzed");
+					$("#buzzed").fadeIn(100).fadeOut(100).fadeIn(100);
+					
+				}
+			}
+		}
+		
+	}
+	
+	$(document).ready(function() {
+		$("#edit-list").click(function() {
+			$("body").addClass("editing");
+			return false;
+		});
+		
+		$("#edit-done").click(function() {
+			$("body").removeClass("editing")
+			return false;
+		});
+	});
+</script>
