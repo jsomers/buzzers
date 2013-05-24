@@ -11,7 +11,7 @@ At our apartment we recently hosted a small reunion of [Quiz Bowlers](http://en.
 
 	![image](https://dl.dropbox.com/u/4427/screenshots/2013-05-22_1820.png)
 
-4. Open the buzzers.html HTML file. Click the "Change Players" link. If you hit the "A" button on a remote, the input box it correponds to will flash. Write the player holding that remote into the box.
+4. Open the buzzers.html HTML file. Click the "Change Players" link. If you hit the "A" button on a remote, the input box it corresponds to will flash. Write the name of the player holding that remote.
 
 5. Save your changes. Now when anyone clicks their Wii remote their name will flash on the screen. Nobody else can "buzz in" until the screen is cleared (by hitting spacebar).
 
